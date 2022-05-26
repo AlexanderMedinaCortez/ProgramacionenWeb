@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragments/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Perfil</div>
+			<div class="card-body">
+
+				<a th:href="@{/users/new}" class="btn btn-primary">Nuevo</a>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</</th>
+							<th>Apellido</th>
+							<th>Telefono</th>
+							<th>Email</th>
+							<th>Contrasenia</th>
+							<th>Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${users}">
+
+							<td th:text="${user.firstName}">HAMP</td>
+							<td th:text="${user.lastName}">HAMP</td>
+							<td th:text="${user.phone}">HAMP</td>
+							<td th:text="${user.email}">HAMP</td>
+							<td th:text="${user.password}">HAMP</td>
+							
+							<td><a th:href="@{'/users/edit/'+ ${user.id}}"
+								class="btn btn-success">Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragments/scripts"></th:block>
+
+</body>
+</html>
