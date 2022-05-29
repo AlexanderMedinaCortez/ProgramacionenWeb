@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragment/head"></th:block>
+<body>
+
+	<th:block th:include="fragment/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Perfil de Afiliado</div>
+			<div class="card-body">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</</th>
+							<th>Apellido</th>
+							<th>Nombre de la empresa</th>
+							<th>Ruc de la empresa</th>
+							<th>Telefono</th>
+							<th>Email</th>
+							<th>Membresia</th>
+							<th>Planes de Membresia</th>
+							<th>Nuevo</th>
+							<th>Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="affiliate : ${affiliates}">
+
+							<td th:text="${affiliate.firstName}">Nombre</td>
+							<td th:text="${affiliate.lastName}">Apellido</td>
+							<td th:text="${affiliate.companyName}">Nombre de la empresa</td>
+							<td th:text="${affiliate.ruc}">Ruc de la empresa</td>
+							<td th:text="${affiliate.phone}">Celular</td>
+							<td th:text="${affiliate.email}">Email</td>
+							<td><th:block
+									th:each="typeAffiliate : ${affiliate.typeAffiliates}">
+									<span th:text="${typeAffiliate.type} + ' '">Item
+										description here...</span>
+								</th:block></td>
+							<td><a
+								th:href="@{'/affiliates/typeaffiliate/list/'+ ${affiliate.id}}"
+								class="btn btn-success">Membresia</a></td>
+
+							<td><a th:href="@{/affiliates/new}" class="btn btn-primary">Nuevo</a>
+							</td>
+
+							<td><a th:href="@{'/affiliates/edit/'+ ${affiliate.id}}"
+								class="btn btn-success">Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragment/scripts"></th:block>
+
+</body>
+</html>

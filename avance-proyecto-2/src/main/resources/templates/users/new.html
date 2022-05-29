@@ -1,0 +1,76 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragment/head"></th:block>
+<body>
+
+<th:block th:include="fragments/navbar"></th:block>
+
+	<div class="container">
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Registrar Usuario</div>
+			<div class="card-body">
+
+
+				<form th:object="${user}" th:action="@{/users/save}"
+					class="row g-3 needs-validation" novalidate th:method="post">
+
+					<div class="col-md-6">
+						<label for="validationCustom01" class="form-label">
+							Nombres</label> <input type="text" class="form-control" id="firstname"
+							th:field="*{firstName}" placeholder="Escriba sus nombres"
+							required>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
+
+					<div class="col-md-6">
+						<label for="validationCustom01" class="form-label">
+							Apellidos</label> <input type="text" class="form-control" id="lastname"
+							th:field="*{lastName}" placeholder="Escriba sus apellidos"
+							required>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
+					<br> <br> <br> <br>
+					<div class="col-md-6">
+						<label for="validationCustom01" class="form-label"> Correo
+							electronico</label> <input type="text" class="form-control" id="email"
+							th:field="*{email}" placeholder="Escriba su correo electronico"
+							required>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
+
+					<div class="col-md-6">
+						<label for="validationCustom01" class="form-label">
+							Celular</label> <input type="text" class="form-control" id="phone"
+							th:field="*{phone}" placeholder="Escriba su numero de celular"
+							required>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
+					<br> <br> <br> <br>
+					<div class="col-md-6">
+						<label for="validationCustom01" class="form-label">
+							Contrasenia</label> <input type="password" class="form-control" id="password"
+							th:field="*{password}" placeholder="Escriba su contrasenia"
+							required>
+						<div class="valid-feedback">Looks good!</div>
+					</div>
+					<div class="col-md-6"></div>
+					<br> <br> <br> <br>
+
+					<div class="col-md-6">
+						<button class="btn btn-danger" type="submit">Registrate</button>
+					</div>
+					
+					<div class="col-md-6">
+						<a th:href="@{/users}" class="btn btn-danger">Regresar</a>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragment/scripts"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragment/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Planes de Membresia</div>
+			<div class="card-body">
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Nombre de la empresa</</th>
+							<th>Membresia</th>
+							<th>Nueva Membresia</th>
+							<th>Editar Membresia</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:action="@{/affiliates/update/{id}(id=${affiliate.id})}">
+							<td th:text="${affiliate.companyName}">Nombre de la empresa</td>
+							<td><th:block
+									th:each="typeAffiliate : ${affiliate.typeAffiliates}">
+									<span th:text="${typeAffiliate.type} + ' '">Item
+										description here...</span>
+								</th:block></td>
+							<td><a
+								th:href="@{'/affiliates/typeaffiliate/new/'+ ${affiliate.id}}"
+								class="btn btn-success">Nuevo</a></td>
+							<td><a
+								th:href="@{'/affiliates/typeaffiliate/new/'+ ${affiliate.id}}"
+								class="btn btn-primary">Editar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragment/scripts"></th:block>
+
+</body>
+</html>

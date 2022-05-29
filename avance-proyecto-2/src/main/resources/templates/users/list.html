@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="fragment/head"></th:block>
+<body>
+
+	<th:block th:include="fragment/navbar"></th:block>
+	<div class="container">
+
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Perfil de Usuario</div>
+			<div class="card-body">
+				<div id="profile">
+					<div id="photo">
+						<img src="/imagen/photo.jpg"  width="250" height="300"
+							class="rounded mx-auto d-block">
+					</div>
+					<br>
+					<div id="name">
+						<span>Alexander Medina</span>
+					</div>
+				</div>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</</th>
+							<th>Apellido</th>
+							<th>Telefono</th>
+							<th>Email</th>
+							<th>Nuevo</th>
+							<th>Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${users}">
+
+							<td th:text="${user.firstName}">HAMP</td>
+							<td th:text="${user.lastName}">HAMP</td>
+							<td th:text="${user.phone}">HAMP</td>
+							<td th:text="${user.email}">HAMP</td>
+
+							<td>
+							<a th:href="@{/users/new}" class="btn btn-primary">Nuevo</a>
+							</td>
+							<td><a th:href="@{'/users/edit/'+ ${user.id}}"
+								class="btn btn-success">Editar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragment/scripts"></th:block>
+
+</body>
+</html>
