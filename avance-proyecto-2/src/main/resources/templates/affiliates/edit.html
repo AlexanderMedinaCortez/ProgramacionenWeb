@@ -76,7 +76,7 @@
 							aria-label="Default select example" th:field="*{typeAffiliates}">
 							 <option value=""></option>
 							<option th:each="typeAffiliate : ${typeAffiliates}"
-								th:text="${typeAffiliate.type}" th:value="${typeAffiliate.id}"></option>
+								th:text="${typeAffiliate.type}+'-'+${typeAffiliate.time}" th:value="${typeAffiliate.id}"></option>
 						</select>
 					</div>
 

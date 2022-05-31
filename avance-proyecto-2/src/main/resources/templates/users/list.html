@@ -10,9 +10,11 @@
 		<div class="card" style="max-width: 100%;">
 			<div class="card-header">Perfil de Usuario</div>
 			<div class="card-body">
+
+
 				<div id="profile">
 					<div id="photo">
-						<img src="/imagen/photo.jpg"  width="250" height="300"
+						<img src="/imagen/photo.jpg" width="250" height="300"
 							class="rounded mx-auto d-block">
 					</div>
 					<br>
@@ -20,7 +22,11 @@
 						<span>Alexander Medina</span>
 					</div>
 				</div>
-
+				
+				<br>
+				
+				<a th:href="@{/users/new}" class="btn btn-primary">Nuevo</a>
+				
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -28,7 +34,6 @@
 							<th>Apellido</th>
 							<th>Telefono</th>
 							<th>Email</th>
-							<th>Nuevo</th>
 							<th>Editar</th>
 						</tr>
 					</thead>
@@ -40,12 +45,8 @@
 							<td th:text="${user.phone}">HAMP</td>
 							<td th:text="${user.email}">HAMP</td>
 
-							<td>
-							<a th:href="@{/users/new}" class="btn btn-primary">Nuevo</a>
-							</td>
 							<td><a th:href="@{'/users/edit/'+ ${user.id}}"
-								class="btn btn-success">Editar</a>
-							</td>
+								class="btn btn-success">Editar</a></td>
 						</tr>
 					</tbody>
 				</table>

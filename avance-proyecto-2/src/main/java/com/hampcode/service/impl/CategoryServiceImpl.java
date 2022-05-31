@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Long create(Category entity) {
 		categoryRepository.save(entity);
-        return entity.getId();
+		return entity.getId();
 	}
 
 	@Override

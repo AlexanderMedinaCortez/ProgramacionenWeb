@@ -2,13 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragment/head"></th:block>
 <body>
-
 	<th:block th:include="fragment/navbar"></th:block>
 	<div class="container">
-
 		<div class="card" style="max-width: 100%;">
 			<div class="card-header">Perfil de Afiliado</div>
 			<div class="card-body">
+				<a th:href="@{/affiliates/new}" class="btn btn-primary">Nuevo</a>
 
 				<table class="table table-striped">
 					<thead>
@@ -21,7 +20,6 @@
 							<th>Email</th>
 							<th>Membresia</th>
 							<th>Planes de Membresia</th>
-							<th>Nuevo</th>
 							<th>Editar</th>
 						</tr>
 					</thead>
@@ -36,15 +34,12 @@
 							<td th:text="${affiliate.email}">Email</td>
 							<td><th:block
 									th:each="typeAffiliate : ${affiliate.typeAffiliates}">
-									<span th:text="${typeAffiliate.type} + ' '">Item
+									<span th:text="${typeAffiliate.type}+'-'+${typeAffiliate.time}">Item
 										description here...</span>
 								</th:block></td>
 							<td><a
 								th:href="@{'/affiliates/typeaffiliate/list/'+ ${affiliate.id}}"
 								class="btn btn-success">Membresia</a></td>
-
-							<td><a th:href="@{/affiliates/new}" class="btn btn-primary">Nuevo</a>
-							</td>
 
 							<td><a th:href="@{'/affiliates/edit/'+ ${affiliate.id}}"
 								class="btn btn-success">Editar</a></td>

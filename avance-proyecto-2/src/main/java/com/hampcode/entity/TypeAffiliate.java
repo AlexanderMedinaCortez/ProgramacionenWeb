@@ -24,8 +24,19 @@ public class TypeAffiliate {
 	@Column(name = "price", nullable = false)
 	private double price;
 
+	@Column(name = "time", nullable = false)
+	private String time;
+	
 	@ManyToMany(mappedBy = "typeAffiliates")
 	private List<Affiliate> affiliates;
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 
 	public Long getId() {
 		return id;

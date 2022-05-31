@@ -42,7 +42,7 @@ public class AffiliateServiceImpl implements AffiliateService {
 		currentAffiliate.setEmail(entity.getEmail());
 		currentAffiliate.setPassword(entity.getPassword());
 		currentAffiliate.setTypeAffiliates(entity.getTypeAffiliates());
-		
+
 		affiliateRepository.save(currentAffiliate);
 	}
 

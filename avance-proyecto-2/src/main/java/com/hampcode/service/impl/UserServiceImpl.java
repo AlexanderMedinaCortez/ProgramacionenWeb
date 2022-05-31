@@ -16,23 +16,23 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public List<User> getAll() {
+	public List<User> getAll(){
 		return userRepository.findAll();
 	}
 
 	@Override
-	public User getOneById(Long id) {
+	public User getOneById(Long id){
 		return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User Not Found!"));
 	}
 
 	@Override
-	public Long create(User entity) {
+	public Long create(User entity){
 		userRepository.save(entity);
 		return entity.getId();
 	}
 
 	@Override
-	public void update(Long id, User entity) {
+	public void update(Long id, User entity){
 		User currentUser = getOneById(id);
 		currentUser.setFirstName(entity.getFirstName());
 		currentUser.setLastName(entity.getLastName());
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(Long id){
 		userRepository.deleteById(id);
 	}
 

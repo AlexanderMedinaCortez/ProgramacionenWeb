@@ -79,9 +79,11 @@
 							id="typeAffiliate" class="form-select form-select-lg mb-3"
 							aria-label="Default select example" th:field="*{typeAffiliates}">
 							<option th:each="typeAffiliate : ${typeAffiliates}"
-								th:text="${typeAffiliate.type}" th:value="${typeAffiliate.id}"></option>
+								th:text="${typeAffiliate.type}+'-'+${typeAffiliate.time}"
+								th:value="${typeAffiliate.id}"></option>
 						</select>
 					</div>
+
 
 					<br> <br> <br> <br>
 
@@ -91,7 +93,8 @@
 
 
 					<div class="col-md-6">
-						<a th:href="@{/affiliates}" class="btn btn-danger">Regresar</a>
+						<a th:href="@{'/affiliates/typeaffiliate/list/'+ ${affiliate.id}}"
+							class="btn btn-danger">Regresar</a>
 					</div>
 
 				</form>

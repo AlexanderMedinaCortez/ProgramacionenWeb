@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -16,18 +17,23 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "first_name", nullable = false)
+	@NotEmpty(message = "Ingresar su nombre")
+	@Column(name = "first_name", nullable = false, length = 70)
 	private String firstName;
 
-	@Column(name = "last_name", nullable = false)
+	@NotEmpty(message = "Ingresar su apellido")
+	@Column(name = "last_name", nullable = false, length = 70)
 	private String lastName;
 
-	@Column(name = "telefono", nullable = false)
+	@NotEmpty(message = "Ingresar su numero de celular")
+	@Column(name = "telefono", nullable = false, length = 9)
 	private String phone;
 
+	@NotEmpty(message = "Ingresar su correo electronico")
 	@Column(name = "email", nullable = false)
 	private String email;
 
+	@NotEmpty(message = "Ingresar su contrasenia")
 	@Column(name = "password", nullable = false)
 	private String password;
 

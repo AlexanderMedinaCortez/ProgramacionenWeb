@@ -2,7 +2,6 @@ package com.hampcode.service.impl;
 
 import java.util.List;
 
-
 import com.hampcode.entity.TypeAffiliate;
 import com.hampcode.repository.TypeAffiliateRepository;
 import com.hampcode.service.TypeAffiliateService;
@@ -37,7 +36,7 @@ public class TypeAffiliateImpl implements TypeAffiliateService {
 		TypeAffiliate currentTypeAffiliate = getOneById(id);
 		currentTypeAffiliate.setType(entity.getType());
 		currentTypeAffiliate.setPrice(entity.getPrice());
-
+		currentTypeAffiliate.setTime(entity.getTime());
 		typeAffiliateRepository.save(currentTypeAffiliate);
 	}
 
@@ -47,4 +46,3 @@ public class TypeAffiliateImpl implements TypeAffiliateService {
 	}
 
 }
-
