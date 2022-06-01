@@ -1,13 +1,10 @@
 package com.hampcode.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,19 +21,6 @@ public class TypeAffiliate {
 	@Column(name = "price", nullable = false)
 	private double price;
 
-	@Column(name = "time", nullable = false)
-	private String time;
-	
-	@ManyToMany(mappedBy = "typeAffiliates")
-	private List<Affiliate> affiliates;
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
 
 	public Long getId() {
 		return id;
@@ -62,12 +46,5 @@ public class TypeAffiliate {
 		this.price = price;
 	}
 
-	public List<Affiliate> getAffiliates() {
-		return affiliates;
-	}
-
-	public void setAffiliates(List<Affiliate> affiliates) {
-		this.affiliates = affiliates;
-	}
 
 }

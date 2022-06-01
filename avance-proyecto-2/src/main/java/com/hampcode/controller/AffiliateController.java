@@ -1,14 +1,13 @@
 package com.hampcode.controller;
 
-import java.util.List;
+
 
 import javax.validation.Valid;
 
+
+
 import com.hampcode.entity.Affiliate;
-import com.hampcode.entity.TypeAffiliate;
-import com.hampcode.entity.User;
-import com.hampcode.service.AffiliateService;
-import com.hampcode.service.TypeAffiliateService;
+import com.hampcode.service.impl.AffiliateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,21 +26,15 @@ public class AffiliateController {
 	@Autowired
 	private AffiliateService affiliateService;
 
-	@Autowired
-	private TypeAffiliateService typeAffiliateService;
-
 	@GetMapping
 	public String showAllAffiliates(Model model) {
 		model.addAttribute("affiliates", affiliateService.getAll());
-		model.addAttribute("typeAffiliates", typeAffiliateService.getAll());
 		return "affiliates/list";
 	}
 
 	@GetMapping("/new")
 	public String newAffiliateForm(Model model) {
 		model.addAttribute("affiliate", new Affiliate());
-		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
-		model.addAttribute("typeAffiliates", typeAffiliates);
 		return "affiliates/new";
 	}
 
@@ -65,8 +58,6 @@ public class AffiliateController {
 	public String editAffiliateForm(@PathVariable("id") long id, Model model) {
 		Affiliate affiliate = affiliateService.getOneById(id);
 		model.addAttribute("affiliate", affiliate);
-		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
-		model.addAttribute("typeAffiliates", typeAffiliates);
 		return "affiliates/edit";
 	}
 
@@ -76,22 +67,5 @@ public class AffiliateController {
 		return "redirect:/affiliates";
 	}
 
-	@GetMapping("/typeaffiliate/list/{id}")
-	public String typeAffiliateForm(@PathVariable("id") long id, Model model) {
-		Affiliate affiliate = affiliateService.getOneById(id);
-		model.addAttribute("affiliate", affiliate);
-		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
-		model.addAttribute("typeAffiliates", typeAffiliates);
-		return "affiliates/typeaffiliates/list";
-	}
-
-	@GetMapping("/typeaffiliate/new/{id}")
-	public String typeAffiliateNewForm(@PathVariable("id") long id, Model model) {
-		Affiliate affiliate = affiliateService.getOneById(id);
-		model.addAttribute("affiliate", affiliate);
-		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
-		model.addAttribute("typeAffiliates", typeAffiliates);
-		return "affiliates/typeaffiliates/new";
-	}
 
 }

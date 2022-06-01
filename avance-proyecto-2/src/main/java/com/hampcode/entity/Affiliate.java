@@ -1,18 +1,10 @@
 package com.hampcode.entity;
 
-import java.util.ArrayList;
-
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -51,19 +43,6 @@ public class Affiliate {
 	@NotEmpty(message = "Ingresar su contrasenia")
 	@Column(name = "password", nullable = false)
 	private String password;
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "affiliate_typeAffiliate", joinColumns = {
-			@JoinColumn(name = "affiliate_id") }, inverseJoinColumns = { @JoinColumn(name = "typeAffiliate_id") })
-	private List<TypeAffiliate> typeAffiliates = new ArrayList<>();
-
-	public List<TypeAffiliate> getTypeAffiliates() {
-		return typeAffiliates;
-	}
-
-	public void setTypeAffiliates(List<TypeAffiliate> typeAffiliates) {
-		this.typeAffiliates = typeAffiliates;
-	}
 
 	public Long getId() {
 		return id;

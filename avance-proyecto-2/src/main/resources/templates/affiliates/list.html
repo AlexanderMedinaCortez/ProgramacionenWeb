@@ -18,8 +18,7 @@
 							<th>Ruc de la empresa</th>
 							<th>Telefono</th>
 							<th>Email</th>
-							<th>Membresia</th>
-							<th>Planes de Membresia</th>
+							<th>Plan de Membresia</th>
 							<th>Editar</th>
 						</tr>
 					</thead>
@@ -32,15 +31,10 @@
 							<td th:text="${affiliate.ruc}">Ruc de la empresa</td>
 							<td th:text="${affiliate.phone}">Celular</td>
 							<td th:text="${affiliate.email}">Email</td>
-							<td><th:block
-									th:each="typeAffiliate : ${affiliate.typeAffiliates}">
-									<span th:text="${typeAffiliate.type}+'-'+${typeAffiliate.time}">Item
-										description here...</span>
-								</th:block></td>
-							<td><a
-								th:href="@{'/affiliates/typeaffiliate/list/'+ ${affiliate.id}}"
-								class="btn btn-success">Membresia</a></td>
 
+							<td><a th:href="@{/affiliateTypeAffiliates}"
+								class="btn btn-primary">Membresia</a></td>
+								
 							<td><a th:href="@{'/affiliates/edit/'+ ${affiliate.id}}"
 								class="btn btn-success">Editar</a></td>
 						</tr>

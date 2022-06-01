@@ -1,6 +1,7 @@
 package com.hampcode.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hampcode.model.entity.Category;
-import com.hampcode.service.CategoryService;
+import com.hampcode.service.impl.CategoryServiceImpl;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
 
 	@Autowired
-	private CategoryService categoryService;
+	private CategoryServiceImpl categoryService;
 
 	@GetMapping
 	public String showAllCategories(Model model) {

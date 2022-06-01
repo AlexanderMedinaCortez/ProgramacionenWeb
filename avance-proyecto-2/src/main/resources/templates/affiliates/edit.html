@@ -69,16 +69,6 @@
 							required>
 						<div class="valid-feedback">Looks good!</div>
 					</div>
-					
-					<div class="col-md-6">
-						<label for="typeAffiliate">Tipo de Afiliado</label> <br><select
-							id="typeAffiliate" class="form-select"
-							aria-label="Default select example" th:field="*{typeAffiliates}">
-							 <option value=""></option>
-							<option th:each="typeAffiliate : ${typeAffiliates}"
-								th:text="${typeAffiliate.type}+'-'+${typeAffiliate.time}" th:value="${typeAffiliate.id}"></option>
-						</select>
-					</div>
 
 					<br> <br> <br> <br>
 
