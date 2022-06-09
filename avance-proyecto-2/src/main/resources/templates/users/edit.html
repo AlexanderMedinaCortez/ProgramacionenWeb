@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script th:src="@{/js/location.js}"></script>
 <th:block th:include="fragment/head"></th:block>
 <body>
 
@@ -13,7 +14,7 @@
 
 				<form th:object="${user}"
 					th:action="@{/users/update/{id}(id=${user.id})}"
-					class="row g-3 needs-validation" novalidate th:method="post">
+					class="row g-3 needs-validation" th:method="post">
 					<div class="col-md-6">
 						<label for="validationCustom01" class="form-label">
 							Nombres</label> <input type="text" class="form-control" id="firstname"
@@ -53,13 +54,52 @@
 							required>
 						<div class="valid-feedback">Looks good!</div>
 					</div>
-					<div class="col-md-6"></div>
+
+
+					<div class="col-md-6">
+						<label for="countries" class="form-label">Country</label> 
+						<select id="countries" 
+							class="form-control"
+							th:field="*{country}"
+							name="country">
+							<option value='-1'>Select Country</option>
+							<option th:each="country:${countries}" th:value="${country.id}"
+									th:text="${country.name}"/></option>
+						</select>
+					</div>
+					
+					<br> <br> <br> <br>
+					
+					<div class="col-md-6">
+						<label for="department" class="form-label">Department</label> 
+						<select id="department" 
+							class="form-control"
+							th:field="*{department}"
+							name="department">
+							<option value='-1'>Select Department</option>
+							<option th:each="department:${departments}" th:value="${department.id}"
+									th:text="${department.name}"/></option>
+						</select>
+					</div>
+					
+					<div class="col-md-6">
+						<label for="province" class="form-label">Province</label> 
+						<select id="province" 
+							class="form-control"
+							th:field="*{province}"
+							name="province">
+							<option value='-1'>Select Province</option>
+							<option th:each="province:${provinces}" th:value="${province.id}"
+									th:text="${province.name}"/></option>
+						</select>
+					</div>
+					
 					<br> <br> <br> <br>
 
 					<div class="col-md-6">
 						<button class="btn btn-danger" type="submit">Guardar</button>
 					</div>
-					
+
 					<div class="col-md-6">
 						<a th:href="@{/users}" class="btn btn-danger">Regresar</a>
 					</div>

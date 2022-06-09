@@ -1,6 +1,8 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragment/head"></th:block>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script th:src="@{/js/location.js}"></script>
 <body>
 
 	<th:block th:include="fragments/navbar"></th:block>
@@ -20,7 +22,7 @@
 			</div>
 
 			<form th:object="${affiliate}" th:action="@{/affiliates/save}"
-				class="row g-3 needs-validation" novalidate th:method="post">
+				class="row g-3 needs-validation"  th:method="post">
 
 				<div class="col-md-6">
 					<label for="validationCustom01" class="form-label"> Nombres</label>
@@ -37,61 +39,50 @@
 					<label for="validationCustom01" class="form-label">
 						Apellidos</label> <input type="text" class="form-control" id="lastname"
 						th:errorclass="'form-control alert-danger'" th:field="*{lastName}"
-						placeholder="Escriba sus apellidos" required> 
-						
-						<small
+						placeholder="Escriba sus apellidos" required> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
 					</small>
 				</div>
-				
+
 				<br> <br> <br> <br>
-				
+
 				<div class="col-md-6">
 					<label for="validationCustom01" class="form-label"> Nombre
 						de la empresa</label> <input type="text" class="form-control"
 						id="companyName" th:field="*{companyName}"
 						th:errorclass="'form-control alert-danger'"
-						placeholder="Escriba el nombre de la empresa" required> 
-						
-						<small
+						placeholder="Escriba el nombre de la empresa" required> <small
 						class="form-text text-danger"
-						th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}">
-					</small>
+						th:if="${#fields.hasErrors('companyName')}"
+						th:errors="*{companyName}"> </small>
 				</div>
 
 				<div class="col-md-6">
 					<label for="validationCustom01" class="form-label"> Correo
 						electronico</label> <input type="text" class="form-control" id="email"
 						th:errorclass="'form-control alert-danger'" th:field="*{email}"
-						placeholder="Escriba su correo electronico" required> 
-						
-						<small
+						placeholder="Escriba su correo electronico" required> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
 					</small>
 				</div>
-				
+
 				<br> <br> <br> <br>
-				
+
 				<div class="col-md-6">
 					<label for="validationCustom01" class="form-label"> RUC</label> <input
 						type="text" class="form-control" id="ruc" th:field="*{ruc}"
 						th:errorclass="'form-control alert-danger'"
-						placeholder="Escriba su correo electronico" required> 
-						
-						<small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('ruc')}" th:errors="*{ruc}">
-					</small>
+						placeholder="Escriba su correo electronico" required> <small
+						class="form-text text-danger" th:if="${#fields.hasErrors('ruc')}"
+						th:errors="*{ruc}"> </small>
 				</div>
 				<div class="col-md-6">
 					<label for="validationCustom01" class="form-label"> Celular</label>
 					<input type="text" class="form-control" id="phone"
 						th:errorclass="'form-control alert-danger'" th:field="*{phone}"
-						placeholder="Escriba su numero de celular" required> 
-						
-						<small
+						placeholder="Escriba su numero de celular" required> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">
 					</small>
@@ -99,18 +90,45 @@
 				<br> <br> <br> <br>
 				<div class="col-md-6">
 					<label for="validationCustom01" class="form-label">
-						Contrasenia</label> <input type="password" class="form-control"
+						Contrasenia</label> <input type="text" class="form-control"
 						id="password" th:field="*{password}"
 						th:errorclass="'form-control alert-danger'"
-						placeholder="Escriba su contrasenia" required> 
-						
-						<small
+						placeholder="Escriba su contrasenia" required> <small
 						class="form-text text-danger"
 						th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
 					</small>
 				</div>
 
-				<div class="col-md-6"></div>
+				<div class="col-md-6">
+
+					<label for="countries" class="form-label">Country</label>  <select
+						id="countries" class="form-control" th:field="${affiliate.country}" th:errorclass="'form-control alert-danger'"
+						name="country"> 
+						<option value='-1' >Select Country</option>
+						<option th:each="country:${countries}" th:value="${country.id}"
+							th:text="${country.name}"/></option>
+					</select>
+
+				</div>
+
+				<br> <br> <br> <br>
+
+				<div class="col-md-6">
+					<label for="department" class="form-label">Department</label> <select
+						id="department" class="form-control" th:field="${affiliate.department}" th:errorclass="'form-control alert-danger'"
+						name="department">
+						<option value='-1'>Select Department</option>
+					</select>
+				</div>
+
+				<div class="col-md-6">
+					<label for="province" class="form-label">Province</label> <select
+						id="province" class="form-control" th:field="${affiliate.province}" th:errorclass="'form-control alert-danger'"
+						name="province">
+						<option value='-1'>Select Province</option>
+					</select>
+				</div>
+
 				<br> <br> <br> <br>
 
 				<div class="col-md-6">

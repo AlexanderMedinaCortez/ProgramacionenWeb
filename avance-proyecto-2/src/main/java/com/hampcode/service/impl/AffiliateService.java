@@ -40,6 +40,9 @@ public class AffiliateService{
 		currentAffiliate.setPhone(entity.getPhone());
 		currentAffiliate.setEmail(entity.getEmail());
 		currentAffiliate.setPassword(entity.getPassword());
+		currentAffiliate.setCountry(entity.getCountry());
+		currentAffiliate.setDepartment(entity.getDepartment());
+		currentAffiliate.setProvince(entity.getProvince());
 
 		affiliateRepository.save(currentAffiliate);
 	}

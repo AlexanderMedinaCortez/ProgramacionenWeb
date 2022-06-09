@@ -52,9 +52,9 @@
 							<td th:text="${affiliateTypeAffiliate.affiliate.companyName}">HAMP</td>
 							<td th:text="${affiliateTypeAffiliate.typeAffiliate.type}">HAMP</td>
 							<td
-								th:text="${#dates.format(affiliateTypeAffiliate.startDate, 'dd-MM-yyyy')}">HAMP</td>
+								th:text="${#dates.format(affiliateTypeAffiliate.startDate, 'dd-mm-yyyy')}">HAMP</td>
 							<td
-								th:text="${#dates.format(affiliateTypeAffiliate.finishDate, 'dd-MM-yyyy')}">HAMP</td>
+								th:text="${#dates.format(affiliateTypeAffiliate.finishDate, 'dd-mm-yyyy')}">HAMP</td>
 
 							<td><a
 								th:href="@{'/affiliateTypeAffiliates/edit/'+ ${affiliateTypeAffiliate.id}}"

@@ -1,6 +1,8 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragment/head"></th:block>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script th:src="@{/js/location.js}"></script>
 <body>
 	<th:block th:include="fragment/navbar"></th:block>
 	<div class="container">
@@ -18,6 +20,9 @@
 							<th>Ruc de la empresa</th>
 							<th>Telefono</th>
 							<th>Email</th>
+							<th>Pais</th>
+							<th>Departamento</th>
+							<th>Provincia</th>
 							<th>Plan de Membresia</th>
 							<th>Editar</th>
 						</tr>
@@ -31,6 +36,9 @@
 							<td th:text="${affiliate.ruc}">Ruc de la empresa</td>
 							<td th:text="${affiliate.phone}">Celular</td>
 							<td th:text="${affiliate.email}">Email</td>
+							<td th:text="${affiliate.country.name}">HAMP</td>
+							<td th:text="${affiliate.department.name}">HAMP</td>
+							<td th:text="${affiliate.province.name}">HAMP</td>
 
 							<td><a th:href="@{/affiliateTypeAffiliates}"
 								class="btn btn-primary">Membresia</a></td>
