@@ -1,7 +1,7 @@
 package com.hampcode.service.impl;
 
+import java.util.Calendar;
 import java.util.Date;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,25 @@ public class AffiliateTypeAffiliateService {
 	public void delete(Long id) {
 		affiliatetypeAffiliateRepository.deleteById(id);
 	}
+	
+
+	
 	public Long create(AffiliateTypeAffiliate entity) {
+		
+		Calendar c = Calendar.getInstance();
+		entity.setStartDate(c.getTime());
+
+		
+		if(entity.getTypeAffiliate().getId()==1) {
+			 c.add(Calendar.MONTH, 1);
+			 entity.setFinishDate(c.getTime());
+		}
+			
+		else {
+			 c.add(Calendar.MONTH, 12);
+			 entity.setFinishDate(c.getTime());
+		}
+		
 		affiliatetypeAffiliateRepository.save(entity);
 		return entity.getId();
 	}

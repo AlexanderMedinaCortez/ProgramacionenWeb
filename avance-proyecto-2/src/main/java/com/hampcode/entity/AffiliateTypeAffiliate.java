@@ -2,7 +2,6 @@ package com.hampcode.entity;
 
 import java.util.Date;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,23 +15,25 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
+
 @Entity
 @Table(name = "affiliate_type_affiliate")
 public class AffiliateTypeAffiliate {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "start_date")
 	private Date startDate;
-
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "finish_date")
 	private Date finishDate;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "affiliate_id")
@@ -49,6 +50,8 @@ public class AffiliateTypeAffiliate {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	
 
 	public Date getStartDate() {
 		return startDate;

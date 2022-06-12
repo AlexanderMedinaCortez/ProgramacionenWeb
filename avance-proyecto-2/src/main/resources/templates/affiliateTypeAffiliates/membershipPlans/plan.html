@@ -1,0 +1,91 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragment/head"></th:block>
+<body>
+
+	<th:block th:include="fragments/navbar"></th:block>
+	<div class="container">
+
+		<div class="card" style="max-width: 100%;">
+			<div class="card-header">Los Planes que tenemos para ti</div>
+			<div class="card-body">
+
+				<form th:object="${affiliateTypeAffiliate}"
+					th:action="@{/affiliateTypeAffiliates/save}"
+					class="row g-3 needs-validation" novalidate th:method="post">
+
+
+					<div class="row">
+
+						<div class="card">
+							<div class="card-body">
+								<div class="card text-center">
+								<div class="card text-bg-danger">
+									<h5 class="card-title" > Beneficios</h5>
+								</div></div>
+								<ul>
+									<li>Publicar fotos en el perfil</li>
+								</ul>
+								<ul>
+									<li>Publicar fotos en el perfil</li>
+								</ul>
+								<ul>
+									<li>Publicar fotos en el perfil</li>
+								</ul>
+
+								<div class="card text-center">
+								<div class="card text-bg-danger">
+									<h5 class="card-title">Precio</h5>
+								</div>
+									</div>
+								<ul>
+									<li>Precio Mensual: 50</li>
+									<li>Precio Anual: 250</li>
+								</ul>
+
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-md-6">
+						<label for="affiliate">Nombre de la Empresa</label> <select
+							id="affiliate" class="form-control" th:field="*{affiliate}">
+							<option th:each="affiliate : ${affiliates}"
+								th:text="${affiliate.companyName}" th:value="${affiliate.id}"></option>
+						</select>
+					</div>
+
+					<div class="col-md-6">
+						<label for="typeAffiliate">Tipo de Membresia</label> <select
+							id="typeAffiliate" class="form-control"
+							th:field="*{typeAffiliate}">
+							<option th:each="typeAffiliate : ${typeAffiliates}"
+								th:text="${typeAffiliate.type}" th:value="${typeAffiliate.id}"></option>
+						</select>
+					</div>
+
+					<br> <br> <br> <br>
+
+
+
+						<div class="col-md-6">
+							<button class="btn btn-danger" type="submit">Guardar</button>
+						</div>
+
+					<div class="col-md-6">
+						<a th:href="@{/affiliateTypeAffiliates}" class="btn btn-danger">Regresar</a>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+	<th:block th:include="fragment/scripts"></th:block>
+
+</body>
+</html>

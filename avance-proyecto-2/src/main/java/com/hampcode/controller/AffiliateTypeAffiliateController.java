@@ -2,8 +2,6 @@ package com.hampcode.controller;
 
 import java.util.List;
 
-
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ public class AffiliateTypeAffiliateController {
 	private AffiliateTypeAffiliateService affiliateTypeAffiliateService;
 
 	@Autowired
-	private AffiliateService  affiliateService;
+	private AffiliateService affiliateService;
 
 	@Autowired
 	private TypeAffiliateService typeAffiliateService;
@@ -52,15 +50,15 @@ public class AffiliateTypeAffiliateController {
 		model.addAttribute("affiliates", affiliates);
 		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
 		model.addAttribute("typeAffiliates", typeAffiliates);
-		return "affiliateTypeAffiliates/new";
+		return "affiliateTypeAffiliates/membershipPlans/plan";
 	}
-
+	
 	@PostMapping("/save")
 	public String saveNewAffiliates(@Valid AffiliateTypeAffiliate affiliateTypeAffiliate, BindingResult result,
 			Model model, SessionStatus status) {
 		try {
 			if (result.hasErrors()) {
-				return "affiliateTypeAffiliates/new";
+				return "affiliateTypeAffiliates/membershipPlans/plan";
 			}
 			affiliateTypeAffiliateService.create(affiliateTypeAffiliate);
 			status.setComplete();
@@ -96,9 +94,13 @@ public class AffiliateTypeAffiliateController {
 		return "redirect:/affiliateTypeAffiliates";
 	}
 
+
 	@PostMapping("/find")
 	public String findForDateAffiliate(Model model, @ModelAttribute AffiliateTypeAffiliate affiliateTypeAffiliate) {
-		model.addAttribute("affiliateTypeAffiliates", affiliateTypeAffiliateService.findByDate(affiliateTypeAffiliate.getStartDate(), affiliateTypeAffiliate.getFinishDate()));
+		model.addAttribute("affiliateTypeAffiliates", affiliateTypeAffiliateService
+				.findByDate(affiliateTypeAffiliate.getStartDate(), affiliateTypeAffiliate.getFinishDate()));
 		return "affiliateTypeAffiliates/list";
 	}
+	
+
 }
