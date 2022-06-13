@@ -21,9 +21,10 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="card text-center">
-								<div class="card text-bg-danger">
-									<h5 class="card-title" > Beneficios</h5>
-								</div></div>
+									<div class="card text-bg-danger">
+										<h5 class="card-title">Beneficios</h5>
+									</div>
+								</div>
 								<ul>
 									<li>Publicar fotos en el perfil</li>
 								</ul>
@@ -35,10 +36,10 @@
 								</ul>
 
 								<div class="card text-center">
-								<div class="card text-bg-danger">
-									<h5 class="card-title">Precio</h5>
-								</div>
+									<div class="card text-bg-danger">
+										<h5 class="card-title">Precio</h5>
 									</div>
+								</div>
 								<ul>
 									<li>Precio Mensual: 50</li>
 									<li>Precio Anual: 250</li>
@@ -66,19 +67,40 @@
 								th:text="${typeAffiliate.type}" th:value="${typeAffiliate.id}"></option>
 						</select>
 					</div>
-
 					<br> <br> <br> <br>
 
-
-
-						<div class="col-md-6">
-							<button class="btn btn-danger" type="submit">Guardar</button>
-						</div>
-
 					<div class="col-md-6">
-						<a th:href="@{/affiliateTypeAffiliates}" class="btn btn-danger">Regresar</a>
+						<label for="coupon">Cupon de descuento</label> <select id="coupon"
+							class="form-control" th:field="*{coupon}">
+							<option th:each="coupon : ${coupons}" th:text="${coupon.name}"
+								th:value="${coupon.id}"></option>
+						</select>
 					</div>
 
+					<div class="col-12">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value=""
+								id="invalidCheck" required> <label
+								class="form-check-label" for="invalidCheck"> Acepto
+								terminos y condiciones </label>
+							<div class="invalid-feedback">Debe estar de acuerdo con los
+								terminos y condiciones</div>
+						</div>
+					</div>
+
+					<br> <br>
+
+					<div class="col-md-4">
+						<button class="btn btn-danger" type="submit">Comprar</button>
+					</div>
+
+					<div class="col-md-4">
+						<a th:href="@{/affiliateTypeAffiliates}" class="btn btn-danger">Historial</a>
+					</div>
+
+					<div class="col-md-4">
+						<a th:href="@{/affiliates}" class="btn btn-danger">Regresar</a>
+					</div>
 				</form>
 
 			</div>

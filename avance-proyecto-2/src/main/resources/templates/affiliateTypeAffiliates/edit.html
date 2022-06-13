@@ -14,42 +14,42 @@
 				<form th:object="${affiliateTypeAffiliate}"
 					th:action="@{/affiliateTypeAffiliates/update/{id}(id=${affiliateTypeAffiliate.id})}"
 					class="row g-3 needs-validation" novalidate th:method="post">
-					
+
 					<div class="col-md-6">
-						<label for="affiliate">Nombre de la Empresa</label> <select id="affiliate"
-							class="form-control" th:field="*{affiliate}" >
+						<label for="affiliate">Nombre de la Empresa</label> <select
+							id="affiliate" class="form-control" th:field="*{affiliate}">
 							<option th:each="affiliate : ${affiliates}"
 								th:text="${affiliate.companyName}" th:value="${affiliate.id}"></option>
 						</select>
 					</div>
-					
+
 					<div class="col-md-6">
-						<label for="typeAffiliate">Tipo de Membresia</label> <select id="typeAffiliate"
-							class="form-control" th:field="*{typeAffiliate}" >
+						<label for="typeAffiliate">Tipo de Membresia</label> <select
+							id="typeAffiliate" class="form-control"
+							th:field="*{typeAffiliate}">
 							<option th:each="typeAffiliate : ${typeAffiliates}"
 								th:text="${typeAffiliate.type}" th:value="${typeAffiliate.id}"></option>
 						</select>
 					</div>
-					
-					<div class="col-md-6">
-						<label for="validationCustom01" class="form-label">
-							Fecha de Inicio</label> <input type="date" class="form-control" id="startDate"
-							th:field="*{startDate}"
-							required>
-					</div>
 
-					<div class="col-md-6">
-						<label for="validationCustom01" class="form-label">
-							Fecha de Fin</label> <input type="date" class="form-control" id="finishDate"
-							th:field="*{finishDate}"
-							required>
-					</div>
 					<br> <br> <br> <br>
 
 					<div class="col-md-6">
-						<button class="btn btn-danger" type="submit">Guardar</button>
+						<label for="coupon">Cupon de descuento</label> <select id="coupon"
+							class="form-control" th:field="*{coupon}">
+							<option th:each="coupon : ${coupons}" th:text="${coupon.name}"
+								th:value="${coupon.id}"></option>
+						</select>
 					</div>
-					
+
+					<div class="col-md-6"></div>
+
+					<br> <br> <br> <br>
+
+					<div class="col-md-6">
+						<button class="btn btn-danger" type="submit">Actualizar</button>
+					</div>
+
 					<div class="col-md-6">
 						<a th:href="@{/affiliateTypeAffiliates}" class="btn btn-danger">Regresar</a>
 					</div>

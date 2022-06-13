@@ -17,9 +17,11 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.hampcode.entity.Affiliate;
 import com.hampcode.entity.AffiliateTypeAffiliate;
+import com.hampcode.entity.Coupon;
 import com.hampcode.entity.TypeAffiliate;
 import com.hampcode.service.impl.AffiliateService;
 import com.hampcode.service.impl.AffiliateTypeAffiliateService;
+import com.hampcode.service.impl.CouponService;
 import com.hampcode.service.impl.TypeAffiliateService;
 
 @Controller
@@ -35,11 +37,17 @@ public class AffiliateTypeAffiliateController {
 	@Autowired
 	private TypeAffiliateService typeAffiliateService;
 
+	@Autowired
+	private CouponService couponService;
+
 	@GetMapping
 	public String showAllAffiliates(Model model) {
-
+		double totalHistoryPrice;
+		List<AffiliateTypeAffiliate> list = affiliateTypeAffiliateService.getAll();
+		totalHistoryPrice = affiliateTypeAffiliateService.totalHistoryPrice(list);
 		model.addAttribute("affiliateTypeAffiliate", new AffiliateTypeAffiliate());
 		model.addAttribute("affiliateTypeAffiliates", affiliateTypeAffiliateService.getAll());
+		model.addAttribute("totalHistoryPrice", totalHistoryPrice);
 		return "affiliateTypeAffiliates/list";
 	}
 
@@ -50,9 +58,11 @@ public class AffiliateTypeAffiliateController {
 		model.addAttribute("affiliates", affiliates);
 		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
 		model.addAttribute("typeAffiliates", typeAffiliates);
+		List<Coupon> coupons = couponService.getAll();
+		model.addAttribute("coupons", coupons);
 		return "affiliateTypeAffiliates/membershipPlans/plan";
 	}
-	
+
 	@PostMapping("/save")
 	public String saveNewAffiliates(@Valid AffiliateTypeAffiliate affiliateTypeAffiliate, BindingResult result,
 			Model model, SessionStatus status) {
@@ -77,6 +87,8 @@ public class AffiliateTypeAffiliateController {
 		model.addAttribute("affiliates", affiliates);
 		List<TypeAffiliate> typeAffiliates = typeAffiliateService.getAll();
 		model.addAttribute("typeAffiliates", typeAffiliates);
+		List<Coupon> coupons = couponService.getAll();
+		model.addAttribute("coupons", coupons);
 
 		model.addAttribute("affiliateTypeAffiliate", affiliateTypeAffiliate);
 		return "affiliateTypeAffiliates/edit";
@@ -94,13 +106,15 @@ public class AffiliateTypeAffiliateController {
 		return "redirect:/affiliateTypeAffiliates";
 	}
 
-
 	@PostMapping("/find")
 	public String findForDateAffiliate(Model model, @ModelAttribute AffiliateTypeAffiliate affiliateTypeAffiliate) {
+		double totalHistoryPrice;
+		List<AffiliateTypeAffiliate> list = affiliateTypeAffiliateService.getAll();
+		totalHistoryPrice = affiliateTypeAffiliateService.totalHistoryPrice(list);
 		model.addAttribute("affiliateTypeAffiliates", affiliateTypeAffiliateService
 				.findByDate(affiliateTypeAffiliate.getStartDate(), affiliateTypeAffiliate.getFinishDate()));
+		model.addAttribute("totalHistoryPrice", totalHistoryPrice);
 		return "affiliateTypeAffiliates/list";
 	}
-	
 
 }
