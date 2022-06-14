@@ -109,11 +109,12 @@ public class AffiliateTypeAffiliateController {
 	@PostMapping("/find")
 	public String findForDateAffiliate(Model model, @ModelAttribute AffiliateTypeAffiliate affiliateTypeAffiliate) {
 		double totalHistoryPrice;
-		List<AffiliateTypeAffiliate> list = affiliateTypeAffiliateService.getAll();
-		totalHistoryPrice = affiliateTypeAffiliateService.totalHistoryPrice(list);
+		List<AffiliateTypeAffiliate> list = affiliateTypeAffiliateService.getAll();	
+		totalHistoryPrice = affiliateTypeAffiliateService.totalHistoryPriceForDate(list,affiliateTypeAffiliate.getStartDate(), affiliateTypeAffiliate.getFinishDate());
+		
 		model.addAttribute("affiliateTypeAffiliates", affiliateTypeAffiliateService
 				.findByDate(affiliateTypeAffiliate.getStartDate(), affiliateTypeAffiliate.getFinishDate()));
-		model.addAttribute("totalHistoryPrice", totalHistoryPrice);
+		model.addAttribute("totalHistoryPrice",totalHistoryPrice );
 		return "affiliateTypeAffiliates/list";
 	}
 

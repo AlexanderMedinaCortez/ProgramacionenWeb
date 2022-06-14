@@ -19,23 +19,23 @@ public class AffiliateTypeAffiliateService {
 
 	public List<AffiliateTypeAffiliate> getAll() {
 		double totalPrice;
-		List<AffiliateTypeAffiliate> affiliateTypeAffiliates=affiliatetypeAffiliateRepository.findAll();
-		
+		List<AffiliateTypeAffiliate> affiliateTypeAffiliates = affiliatetypeAffiliateRepository.findAll();
+
 		for (AffiliateTypeAffiliate affiliateTypeAffiliate : affiliateTypeAffiliates) {
-			totalPrice= affiliateTypeAffiliate.getTypeAffiliate().getPrice()*((100-affiliateTypeAffiliate.getCoupon().getDiscount())/100);
+			totalPrice = affiliateTypeAffiliate.getTypeAffiliate().getPrice()
+					* ((100 - affiliateTypeAffiliate.getCoupon().getDiscount()) / 100);
 			affiliateTypeAffiliate.setTotalPrice(totalPrice);
-		
+
 		}
 
-		
 		return affiliatetypeAffiliateRepository.findAll();
 	}
-	
+
 	public double totalHistoryPrice(List<AffiliateTypeAffiliate> affiliateTypeAffiliates) {
-		double historyPrice=0;
-		
+		double historyPrice = 0;
+
 		for (AffiliateTypeAffiliate affiliateTypeAffiliate : affiliateTypeAffiliates) {
-			historyPrice= historyPrice + affiliateTypeAffiliate.getTotalPrice();
+			historyPrice = historyPrice + affiliateTypeAffiliate.getTotalPrice();
 		}
 		return historyPrice;
 	}
@@ -46,11 +46,11 @@ public class AffiliateTypeAffiliateService {
 	}
 
 	public void update(Long id, AffiliateTypeAffiliate entity) {
-		
+
 		AffiliateTypeAffiliate current = getOneById(id);
 		Calendar c = Calendar.getInstance();
 		entity.setStartDate(c.getTime());
-		
+
 		if (entity.getTypeAffiliate().getId() == 1) {
 			c.add(Calendar.MONTH, 1);
 			current.setFinishDate(c.getTime());
@@ -60,7 +60,7 @@ public class AffiliateTypeAffiliateService {
 			c.add(Calendar.MONTH, 12);
 			current.setFinishDate(c.getTime());
 		}
-		
+
 		current.setAffiliate(entity.getAffiliate());
 		current.setTypeAffiliate(entity.getTypeAffiliate());
 		current.setCoupon(entity.getCoupon());
@@ -77,7 +77,7 @@ public class AffiliateTypeAffiliateService {
 
 		Calendar c = Calendar.getInstance();
 		entity.setStartDate(c.getTime());
-		
+
 		if (entity.getTypeAffiliate().getId() == 1) {
 			c.add(Calendar.MONTH, 1);
 			entity.setFinishDate(c.getTime());
@@ -103,4 +103,14 @@ public class AffiliateTypeAffiliateService {
 		return affiliateTypeAffiliates;
 	}
 
+	public double totalHistoryPriceForDate(List<AffiliateTypeAffiliate> affiliateTypeAffiliates, Date startDate,
+			Date finishDate) {
+		double historyPrice = 0;
+		List<AffiliateTypeAffiliate> listForDate = findByDate(startDate, finishDate);
+
+			for (AffiliateTypeAffiliate affiliateTypeAffiliate : listForDate) {
+				historyPrice = historyPrice + affiliateTypeAffiliate.getTotalPrice();
+			}
+		return historyPrice;
+	}
 }
